@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>House Price Prediction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+    .container {
+      background: rgba(0,0,0,0.7);
+      width: 50%;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #000;
+    }
+    h2 {
+      text-align: center;
+      color: #ffcc00;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+    input[type=submit] {
+      background: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    input[type=submit]:hover {
+      background: #ffaa00;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      text-align: center;
+      font-size: 22px;
+      background: #28a745;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🏡 House Price Prediction</h2>
+    <form action="/predict" method="post">
+      <label>Distance (km):</label>
+      <input type="text" name="DISTANCE" required>
+
+      <label>RAD:</label>
+      <input type="text" name="RAD" required>
+
+      <label>Tax:</label>
+      <input type="text" name="TAX" required>
+
+      <label>Property Type:</label>
+      <select name="PROPERTYTYPE">
+        <option>Condo</option>
+        <option>Apartment</option>
+        <option>House</option>
+      </select>
+
+      <label>Location:</label>
+      <select name="LOCATION">
+        <option>Downtown</option>
+        <option>Suburban</option>
+        <option>Midtown</option>
+      </select>
+
+      <label>Area (SQFT):</label>
+      <input type="text" name="SQFT" required>
+
+      <label>Furnishing Status:</label>
+      <select name="FURNISHINGSTATUS">
+        <option>Furnished</option>
+        <option>Semi-Furnished</option>
+        <option>Unfurnished</option>
+      </select>
+
+      <label>Hot Water Heating:</label>
+      <select name="HOTWATERHEATING">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <label>Air Conditioning:</label>
+      <select name="AIRCONDITIONING">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <label>Rooms:</label>
+      <input type="text" name="ROOMS" required>
+
+      <label>Year Built:</label>
+      <input type="text" name="YEARBUILT" required>
+
+      <input type="submit" value="Predict Price">
+    </form>
+
+    {% if prediction_text %}
+    <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+  </div>
+</body>
+</html>
